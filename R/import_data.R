@@ -14,7 +14,7 @@
 #'
 #' data_tgca_tumor_stat <- run_import_data(df_name_and_path,1,"tumor_status","TUMOR FREE","WITH TUMOR")
 
-#importing tgca
+#importing tgca sheet1 and filter on tumor status
 
 run_import_data <- function(df=NULL, sheet_numb=NULL, headername=NULL, tumor_value1=NULL, tumor_value2=NULL) {
   xfun::strings_please()
