@@ -24,7 +24,9 @@
 #'
 #'
 
-stat_test <- function(df=NULL, cancer_type=NULL, patients=NULL, metadata_col_num=NULL,metadata_col = NULL, metadata_levels=c(NULL,NULL)) {
+#stat test for analysis
+
+wilco_test <- function(df=NULL, cancer_type=NULL, patients=NULL, metadata_col_num=NULL,metadata_col = NULL, metadata_levels=c(NULL,NULL)) {
  
  if (!is.null(patients) && !is.null(cancer_type)) {
     stop("filter dataset by either cancer type or patients samples")
