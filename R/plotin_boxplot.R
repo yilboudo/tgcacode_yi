@@ -22,8 +22,8 @@
 #' plotin(data_tgca_tumor_stat, patients= data_tgca_tumor_stat$bcr_patient_barcode[grepl("TCGA-B*",data_tgca_tumor_stat$bcr_patient_barcode)] , metadata_col_num= "OS.time",
 #' metadata_col ="race", metadata_levels=c("WHITE","ASIAN") )
 
-
 plotin <- function(df=NULL, cancer_type=NULL, patients=NULL, metadata_col_num=NULL, metadata_col = NULL, metadata_levels=c(NULL,NULL)) {
+
   if (!is.null(patients) && !is.null(cancer_type)) {
     stop("filter dataset by either cancer type or patients samples")
   }
