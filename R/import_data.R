@@ -15,7 +15,6 @@
 #' data_tgca_tumor_stat <- run_import_data(df_name_and_path,1,"tumor_status","TUMOR FREE","WITH TUMOR")
 
 
-#import data
 run_import_data <- function(df=NULL, sheet_numb=NULL, headername=NULL, tumor_value1=NULL, tumor_value2=NULL) {
   xfun::strings_please()
   data_tgca <- openxlsx::read.xlsx(df , sheet=sheet_numb,rowNames=TRUE)
