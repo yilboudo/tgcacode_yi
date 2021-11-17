@@ -1,6 +1,5 @@
 #' A function to create a boxplot data from TGCA dataset
 #'
-#'
 #' @param df dataframe with individuals in rows and cancer attributes in columns
 #' @param cancer_colname header name matching patient's cancer status
 #' @param patient_colname header name of matching patients' ID
