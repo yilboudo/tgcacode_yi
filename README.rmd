@@ -1,0 +1,57 @@
+---
+title: "tgcacode"
+author: "Yann Ilboudo"
+date: "16/11/2021"
+output:
+  pdf_document: default
+  rmarkdown::html_vignette: default
+  html_document:
+    df_print: paged
+vignette: |
+  %\VignetteIndexEntry{tgcacode} %\VignetteEngine{knitr::rmarkdown} \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Intro
+
+This vignette provides examples on how to use the functions within the tgcacode package
+
+## Load actual datasets
+```{r, eval=FALSE}
+rm(list=ls())
+library(tgcacode)
+
+df_name_and_path <- "~/Desktop/TCGA-CDR-SupplementalTableS1.xlsx"
+
+data_tgca_tumor_stat <- run_import_data(df_name_and_path,1,"tumor_status","TUMOR FREE","WITH TUMOR")
+
+```
+
+
+## Making boxplots
+```{r, eval=FALSE}
+plotin(data_tgca_tumor_stat, cancer_type =  c("ACC","BRCA") , metadata_col_num= "OS.time",
+metadata_col ="race", metadata_levels=c("WHITE","ASIAN") )
+
+plotin(data_tgca_tumor_stat, cancer_type =  c("ACC") , metadata_col_num= "age_at_initial_pathologic_diagnosis", metadata_col ="gender", metadata_levels=c("FEMALE","MALE") )
+
+plotin(data_tgca_tumor_stat, patients= data_tgca_tumor_stat$bcr_patient_barcode[grepl("TCGA-B*",data_tgca_tumor_stat$bcr_patient_barcode)] , metadata_col_num= "OS.time", metadata_col ="race", metadata_levels=c("WHITE","ASIAN") )
+```
+
+## Performing test statistic
+```{r, eval=FALSE}
+#Within individuals with BRCA cancer type, comparing the age between stage 1 and stage 4 tumor stage
+patho_age <- stat_test(data_tgca_tumor_stat, cancer_type =  c("BRCA") , metadata_col_num= "age_at_initial_pathologic_diagnosis", metadata_col ="ajcc_pathologic_tumor_stage", metadata_levels=c("Stage I","Stage IV") )
+
+#Across all individuals, comparing the age between female and male
+gender_age <- stat_test(data_tgca_tumor_stat, patients=data_tgca_tumor_stat$bcr_patient_barcode[grepl("TCGA*",data_tgca_tumor_stat$bcr_patient_barcode)], metadata_col_num= "age_at_initial_pathologic_diagnosis",  metadata_col ="gender", metadata_levels=c("FEMALE","MALE") )
+
+#Within individuals with BRCA cancer type, comparing survival time between vital status
+vita_ostime <- stat_test(data_tgca_tumor_stat, cancer_type = "BRCA", metadata_col_num= "OS.time",
+                         metadata_col ="vital_status", metadata_levels=c("Dead","Alive") )
+
+```
+
