@@ -1,4 +1,4 @@
-#' A function to compute a unpaired two-samples wilcoxon test for a TGCA dataset
+#' A function to compute a unpaired two-samples wilcoxon test for a TGCA dataset 
 #'
 #' @param df dataframe with individuals in rows and cancer attributes in columns
 #' @param cancer_colname header name matching patient's cancer status
@@ -25,7 +25,8 @@
 #'
 
 stat_test <- function(df=NULL, cancer_type=NULL, patients=NULL, metadata_col_num=NULL,metadata_col = NULL, metadata_levels=c(NULL,NULL)) {
-  if (!is.null(patients) && !is.null(cancer_type)) {
+ 
+ if (!is.null(patients) && !is.null(cancer_type)) {
     stop("filter dataset by either cancer type or patients samples")
   }
 
